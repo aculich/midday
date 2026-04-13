@@ -37,7 +37,9 @@ Midday is an all-in-one tool designed to help freelancers, contractors, consulta
 
 ## Get started
 
-We are working on the documentation to get started with Midday for local development: https://docs.midday.ai
+- **Local development:** See [docs/local-development.md](docs/local-development.md) for minimal setup (marketing site only or dashboard + API with Supabase and Redis). After `bun i`, run `./scripts/setup-local-env.sh` for the full stack, then fill Supabase/DB vars and run migrations.
+- **Fork / upstream workflow:** If you use the `aculich/midday` fork, see [WORKFLOW.md](WORKFLOW.md) (`./sync`, remotes, `develop` vs `main`).
+- **Docs (hosted):** https://docs.midday.ai
 
 ## App Architecture
 

@@ -4,6 +4,7 @@ This directory contains technical documentation for the Midday.
 
 ## Contents
 
+- **[local-development.md](./local-development.md)** - Minimal local setup: marketing website only (Option A) or dashboard + API with Supabase and Redis (Option B).
 - **[weekly-insights.md](./weekly-insights.md)** - Technical documentation of the AI-powered weekly insights system including content generation, metric selection, data consistency, and advanced projections (runway dates, quarter pace, payment anomalies).
 - **[inbox-matching.md](./inbox-matching.md)** - Detailed documentation of the V2 deterministic inbox matching algorithm with team calibration, hard-negative memory, and read-only verification tooling.
 - **[invoice-recurring.md](./invoice-recurring.md)** - Technical documentation of the recurring invoice system including architecture, state machine, generation flow, and key design decisions.

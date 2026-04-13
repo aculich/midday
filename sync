@@ -1,0 +1,39 @@
+#!/usr/bin/env sh
+# Sync fork with upstream: mirror upstream/main to origin/main, rebase develop.
+# Run from repo root. Requires remotes: upstream (midday-ai/midday), origin (your fork).
+
+set -e
+ROOT="$(cd "$(dirname "$0")" && pwd)"
+cd "$ROOT"
+
+echo "==> Fetch upstream"
+git fetch upstream
+
+echo ""
+echo "==> Commits on upstream/main not yet in local develop (next rebase will replay your work on top)"
+COUNT=$(git rev-list --count develop..upstream/main 2>/dev/null) || COUNT=0
+git log --oneline develop..upstream/main 2>/dev/null | head -30 || true
+if [ "$COUNT" -gt 30 ] 2>/dev/null; then
+  echo "... ($COUNT total; showing first 30)"
+fi
+
+echo ""
+echo "==> Mirror upstream/main -> origin/main (fork main stays identical to upstream)"
+git push origin upstream/main:main --force-with-lease
+
+echo ""
+echo "==> Rebase develop onto upstream/main"
+git checkout develop
+git rebase upstream/main
+
+echo ""
+echo "==> Upstream tip"
+git log -1 --format="%h %as %s" upstream/main
+
+echo ""
+echo "==> develop tip"
+git log -1 --format="%h %as %s" develop
+
+echo ""
+echo "Next: push your fork branch (use --force-with-lease after a rebase that rewrote history)"
+echo "  git push origin develop --force-with-lease"
